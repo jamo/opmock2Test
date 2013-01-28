@@ -111,7 +111,7 @@ int orderListD(dList *L){
 
 dList* mergeListsD(dList *L1, dList *L2){
   dList *L3;
-  if (L1 != NULL && L2 != NULL){
+  if (L1 != NULL and L2 != NULL){
     if (L1->x < L2->x){
       L3 = clone(L1);
       L1= L1->next;
