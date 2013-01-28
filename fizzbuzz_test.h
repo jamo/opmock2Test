@@ -6,6 +6,7 @@ void test_insert_element();
 void delete_element_test();
 void order_list();
 void print_test();
+void test_merge();
 //void test_fizzbuzz_with_5();
 //void test_fizzbuzz_with_15();
 //void test_fizzbuzz_many_3();

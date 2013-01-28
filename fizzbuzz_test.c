@@ -89,3 +89,37 @@ void print_test() {
   OP_ASSERT_TRUE(fgetc(fp) =='5');
   fclose(fp);
 }
+
+void test_merge(){
+  dList *eka = createElemNo(22);
+  insertElementD(eka,eka,333);
+  insertElementD(eka,eka->next,33);
+  insertElementD(eka,eka,1);
+
+  dList *toka = createElemNo(22);
+  insertElementD(toka, toka,33);
+  insertElementD(toka, toka,2);
+  insertElementD(toka, toka,1);
+  insertElementD(toka, toka,3333);
+  orderListD(eka);
+  orderListD(toka);
+  dList *uus = mergeListsD(eka, toka);
+  freopen ("output.txt","w",stdout);
+  printElementsD(uus);
+  fclose(stdout);
+  freopen ("/dev/tty", "a", stdout);
+  OP_ASSERT_TRUE(uus->x == 1);
+  uus = uus->next;
+  OP_ASSERT_TRUE(uus->x == 2);
+  uus = uus->next;
+  OP_ASSERT_TRUE(uus->x == 22);
+  uus = uus->next;
+  OP_ASSERT_TRUE(uus->x == 33);
+  uus = uus->next;
+  OP_ASSERT_TRUE(uus->x == 333);
+  uus = uus->next;
+  OP_ASSERT_TRUE(uus->x == 3333);
+  uus = uus->next;
+  OP_ASSERT_TRUE(uus == NULL);
+}
+

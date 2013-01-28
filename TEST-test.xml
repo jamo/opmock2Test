@@ -9,4 +9,6 @@
     </testcase>
     <testcase classname="test" name="printing works">
     </testcase>
+    <testcase classname="test" name="merge works too">
+    </testcase>
 </testsuite>

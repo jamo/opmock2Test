@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "l.h"
-
+#define and &&
 
 
 
@@ -110,62 +110,50 @@ int orderListD(dList *L){
 }
 
 dList* mergeListsD(dList *L1, dList *L2){
-  dList *L3 = NULL;
-
-  if (L1 != NULL && L2 == NULL){
-    L3 = L1;
-    return L3;
-  }
-
-  if (L1 == NULL && L2 != NULL){
-    L3 = L2;
-    return L3; //(piti tallentaa L3 kasaan)
-  }
-  if (L1 == NULL && L2 == NULL){
+  dList *L3;
+  if (L1 != NULL && L2 != NULL){
+    if (L1->x < L2->x){
+      L3 = clone(L1);
+      L1= L1->next;
+    } else if (L1->x ==  L2->x ){
+      L3 = clone(L1);
+      L1 = L1->next;
+      L2= L2->next;
+    } else {
+      L3 = clone(L2);
+      L2 = L2->next;
+    }
+  } else if (L1 !=  NULL and L2==NULL){
+    L3 = clone(L1);
+    L1 = L1->next;
+  }else if (L1 ==  NULL and L2!=NULL){
+    L3 = clone(L2);
+    L2 = L2->next;
+  } else {
     return NULL;
   }
-
-  if (L1 != NULL){
-    L3 = L1;
-  }
-  if (L2 != NULL && (L2->x > L1->x)){
-    L3 = L2;
-  }
-  if ((L1 != NULL && L2 != NULL) && ( L1->x == L2->x )){
-    int sum2 = (L1->x) + (L2->x);
-    L3 = createElem(sum2, NULL, NULL);
-    L1=L1->next;
-    L2=L2->next;
-  }
-
-  dList *permHead = L3;
-
-  while (L1!=NULL || L2!=NULL){
-    dList *tmp = NULL;
-    int sum = 0;
-    if (L1!=NULL){
-      tmp = L1;
-    }
-    if( L2!=NULL && (L1!=NULL || (L2->x < L1->x))){
-      tmp = L2;
-    }
-    if ((L1 != NULL && L2 != NULL)&&(L1->x == L2->x) ){
-      sum = (L1->x) + (L2->x);
-      tmp = createElem(sum, L3, NULL);
-    }
-
-    L3->next = createElem(tmp->x, tmp->prev, tmp->next);
-
-    L3=L3->next;
-    if (sum){
+  dList *head = L3;
+  while (L1 != NULL || L2 != NULL){
+    if (L1 != NULL and L2 != NULL){
+      if (L1->x < L2->x){
+        L3->next = clone(L1);
+        L1= L1->next;
+      } else if (L1->x ==  L2->x ){
+        L3->next = clone(L1);
+        L1 = L1->next;
+        L2= L2->next;
+      } else {
+        L3->next = clone(L2);
+        L2 = L2->next;
+      }
+    } else if (L1 !=  NULL and L2==NULL){
+      L3->next = clone(L1);
       L1 = L1->next;
-      L2 = L2->next;
-    } else if(tmp==L1){
-      L1=L1->next;
-    } else if (tmp == L2){
+    }else if (L1 ==  NULL and L2!=NULL){
+      L3->next = clone(L2);
       L2 = L2->next;
     }
-
+    L3=L3->next;
   }
-  return permHead;
+  return head;
 }
