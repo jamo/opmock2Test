@@ -1,0 +1,12 @@
+<testsuite>
+    <testcase classname="test" name="dList creation works">
+    </testcase>
+    <testcase classname="test" name="dList insertation works">
+    </testcase>
+    <testcase classname="test" name="dList deletion works">
+    </testcase>
+    <testcase classname="test" name="orderdList works">
+    </testcase>
+    <testcase classname="test" name="printing works">
+    </testcase>
+</testsuite>
