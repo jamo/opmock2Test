@@ -106,6 +106,16 @@ void opmock_register_test(OPMOCK_TEST_CALLBACK test, const char * test_name)
 { 
   opmock_test_array[opmock_test_counter].callback = test;
   opmock_test_array[opmock_test_counter].test_name = test_name;
+  opmock_test_array[opmock_test_counter].points = NULL;
+  opmock_test_counter ++;
+}
+
+
+void opmock_register_test_points(OPMOCK_TEST_CALLBACK test, const char * test_name, const char * points)
+{ 
+  opmock_test_array[opmock_test_counter].callback = test;
+  opmock_test_array[opmock_test_counter].test_name = test_name;
+  opmock_test_array[opmock_test_counter].points = points;
   opmock_test_counter ++;
 }
 
@@ -144,6 +154,10 @@ void opmock_test_suite_run()
 				opmock_sprint_error_messages(messages, 10000);
 				fprintf(report, "        <failure type=\"Error\">%s", messages);
 				fprintf(report, "        </failure>\n");
+        char note [10000];
+        opmock_sprint_error_messages_note(note, 10000);
+        fprintf(report, "        <note type=\"Note\">%s",note);
+        fprintf(report, "        </note>\n");
 			} 
 		}
 		else {
@@ -153,6 +167,10 @@ void opmock_test_suite_run()
 			printf("\033[0m");
 		}
 		if(report != NULL) {
+      if (opmock_test_array[counter].points != NULL){
+        fprintf(report, "        <points type=\"Point\">%s", opmock_test_array[counter].points);
+        fprintf(report, "\n        </points>\n");
+      }
 			fprintf(report, "    </testcase>\n");
 		}	
 	}
@@ -381,6 +399,24 @@ void opmock_add_error_message(char * error_message)
 	opmock_error_message++;
 }
 
+
+void opmock_add_error_message_and_note(char * error_message, char * note)
+{
+  if(opmock_error_message < OP_MAX_ERROR_MESSAGE)
+  {
+    snprintf(opmock_error_message_array[opmock_error_message].message, OP_ERROR_MESSAGE_LENGTH, "%s", error_message);   
+    snprintf(opmock_error_message_array[opmock_error_message].note, OP_ERROR_MESSAGE_LENGTH, "%s", note);   
+  }
+  else
+  {
+    snprintf(opmock_error_message_array[OP_MAX_ERROR_MESSAGE -1].message, OP_ERROR_MESSAGE_LENGTH, "Too many error messages (%d), can't store all of them.", opmock_error_message);
+    snprintf(opmock_error_message_array[OP_MAX_ERROR_MESSAGE -1].note, OP_ERROR_MESSAGE_LENGTH, "Too many error messages notes (%d), can't store all of them.", opmock_error_message);
+  }
+  opmock_error_message++;
+}
+
+
+
 void opmock_add_call(char * operation)
 {
 	if(opmock_call_stack < OP_MAX_ERROR_MESSAGE)
@@ -449,6 +485,25 @@ void opmock_sprint_error_messages(char *messages, int max_size)
 		}
 	}
 }
+void opmock_sprint_error_messages_note(char *messages, int max_size)
+{
+  int i;
+  int max = opmock_error_message < OP_MAX_ERROR_MESSAGE ? opmock_error_message : OP_MAX_ERROR_MESSAGE;
+  strcpy(messages, "");
+  int sum = 0;
+
+  for(i = 0; i < max; i++)
+  {
+    int len = strlen(opmock_error_message_array[i].note)+1;/* +1 for the NULL terminating byte */
+    sum += len;
+    if(max_size > (sum+1)) {
+      strcat(messages, opmock_error_message_array[i].note);
+      if(i < max)
+        strcat(messages, "\n");
+    }
+  }
+}
+
 
 int opmock_get_number_of_errors()
 {

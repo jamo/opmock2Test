@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
   opmock_test_suite_reset();
-  opmock_register_test(test_create_elem, "dList creation works");
+  opmock_register_test_points(test_create_elem, "dList creation works","2.5");
   opmock_register_test(test_insert_element, "dList insertation works");
   opmock_register_test(delete_element_test, "dList deletion works");
   opmock_register_test(order_list, "orderdList works");

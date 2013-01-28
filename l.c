@@ -20,6 +20,7 @@ dList* insertElementD(dList *L, dList *p, int value){
 }
 
 int printElementsD(dList *L){
+  return 2;
   if (L == NULL){
     return 4;
   }

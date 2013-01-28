@@ -218,6 +218,17 @@ do { \
     return;								\
   } \
 } while ( 0 )
+/*message ie. note*/
+#define OP_ASSERT_TRUE_MSG(expected, message) \
+do { \
+  if(!((expected))) {             \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d", __BASE_FILE__, __LINE__); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) message);\
+    opmock_test_error++; \
+    opmock_print_error_messages();                \
+    return;               \
+  } \
+} while ( 0 )
 
 #define OP_ASSERT_FALSE(expected) \
 do { \
@@ -375,6 +386,7 @@ typedef struct
 {
   OPMOCK_TEST_CALLBACK callback;
   const char *test_name;
+  const char *points;
 } opmock_test_struct;
 
 /*
@@ -383,6 +395,7 @@ typedef struct
 typedef struct
 {
   char message [OP_ERROR_MESSAGE_LENGTH];
+  char note [OP_ERROR_MESSAGE_LENGTH];
 } opmock_error_message_struct;
 
 /*
@@ -421,17 +434,20 @@ void opmock_test_verify();
  * Register a single test. Call opmock_reset_test once before registering a list of tests.
  */
 void opmock_register_test(OPMOCK_TEST_CALLBACK test, const char * test_name);
+void opmock_register_test_points(OPMOCK_TEST_CALLBACK test, const char * test_name, const char * points);
 
 /*
  * Utility functions to avoid global variable exposure
  */
 char * get_matcher_message();
 void opmock_add_error_message(char *error_message);
+void opmock_add_error_message_and_note(char *error_message, char *note);
 void opmock_add_call(char * operation);
 char * opmock_get_current_call();
 void opmock_pop_call();
 void opmock_print_error_messages();
 void opmock_sprint_error_messages(char *messages, int max_size);
+void opmock_sprint_error_messages_note(char *messages, int max_size);
 int opmock_get_number_of_errors();
 int opmock_get_number_of_errors_no_order();
 void opmock_add_verify_callback(OPMOCK_VERIFY_CALLBACK callback);
