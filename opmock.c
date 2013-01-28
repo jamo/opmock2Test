@@ -146,7 +146,7 @@ void opmock_test_suite_run()
 		if(opmock_test_error > previous_error) {
 			printf("\033[31m");
 			printf("\033[1m");
-			printf("NOK test '%s'\n", opmock_test_array[counter].test_name);
+			printf("    Test '%s' failed\n", opmock_test_array[counter].test_name);
 			printf("\033[0m");
 			if(report != NULL) {
 				/* Compose a string with all error messages */
@@ -463,7 +463,8 @@ void opmock_print_error_messages()
 			//printf("\033[33m");
 			printf("\033[35m");
 		}
-		printf("%s\n", opmock_error_message_array[i].message);
+		printf("    %s\n", opmock_error_message_array[i].message);
+    printf("    Note: %s\n", opmock_error_message_array[i].note);
 	}
 }
 
