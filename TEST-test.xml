@@ -12,7 +12,7 @@
     <testcase classname="test" name="printing works">
         <failure type="Error">ERROR : ASSERT failed in file fizzbuzz_test.c at line 82
         </failure>
-        <note type="Note">LOLOLOLOLL  foobar
+        <note type="Note">testivirheilmo
         </note>
     </testcase>
     <testcase classname="test" name="merge works too">

@@ -79,7 +79,7 @@ void print_test() {
   fclose(stdout);
   freopen ("/dev/tty", "a", stdout);
   FILE *fp = fopen ("output.txt","r+");
-  OP_ASSERT_TRUE_MSG(fgetc(fp) =='2',"LOLOLOLOLL  foobar");
+  OP_ASSERT_TRUE_MSG("testivirheilmo", fgetc(fp) =='2');
   OP_ASSERT_TRUE(fgetc(fp) =='2');
   OP_ASSERT_TRUE(fgetc(fp) =='\n');
   OP_ASSERT_TRUE(fgetc(fp) =='2');

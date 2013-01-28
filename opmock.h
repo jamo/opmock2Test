@@ -43,6 +43,17 @@ typedef void (* OPMOCK_VERIFY_CALLBACK)();
   } \
 } while ( 0 )
 
+#define OP_ASSERT_EQUAL_INT_MSG(note, expected, actual) \
+  do { \
+  if((int)(expected) != (int)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %d != %d", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_NOT_EQUAL_INT(expected, actual) \
 do { \
   if((int)(expected) == (int)(actual)) {						\
@@ -54,6 +65,18 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_INT_MSG(note, expected, actual) \
+do { \
+  if((int)(expected) == (int)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %d == %d", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
+
 #define OP_ASSERT_EQUAL_UINT(expected, actual) \
 do { \
   if((unsigned int)(expected) != (unsigned int)(actual)) {						\
@@ -62,6 +85,18 @@ do { \
     opmock_test_error++; \
     opmock_print_error_messages();						\
     return;								\
+  } \
+} while ( 0 )
+
+
+#define OP_ASSERT_EQUAL_UINT_MSG(note, expected, actual) \
+do { \
+  if((unsigned int)(expected) != (unsigned int)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %u != %u", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
   } \
 } while ( 0 )
 
@@ -76,6 +111,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_UINT_MSG(note, expected, actual) \
+do { \
+  if((unsigned int)(expected) == (unsigned int)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %u == %u", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_EQUAL_SHORT(expected, actual) \
 do { \
   if((short)(expected) != (short)(actual)) {						\
@@ -84,6 +130,17 @@ do { \
     opmock_test_error++; \
     opmock_print_error_messages();						\
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_ASSERT_EQUAL_SHORT_MSG(note, expected, actual) \
+do { \
+  if((short)(expected) != (short)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %hi != %hi", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
   } \
 } while ( 0 )
 
@@ -98,6 +155,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_SHORT_MSG(note, expected, actual) \
+do { \
+  if((short)(expected) == (short)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %hi == %hi", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message((char *) op_error_message); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_EQUAL_USHORT(expected, actual) \
 do { \
   if((unsigned short)(expected) != (unsigned short)(actual)) {						\
@@ -106,6 +174,17 @@ do { \
     opmock_test_error++; \
     opmock_print_error_messages();						\
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_ASSERT_EQUAL_USHORT_MSG(note, expected, actual) \
+do { \
+  if((unsigned short)(expected) != (unsigned short)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %hu != %hu", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message((char *) op_error_message); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
   } \
 } while ( 0 )
 
@@ -120,6 +199,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_USHORT_MSG(note, expected, actual) \
+do { \
+  if((unsigned short)(expected) == (unsigned short)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %hu == %hu", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message((char *) op_error_message); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_EQUAL_LONG(expected, actual) \
 do { \
   if((long)(expected) != (long)(actual)) {						\
@@ -128,6 +218,17 @@ do { \
     opmock_test_error++; \
     opmock_print_error_messages();						\
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_ASSERT_EQUAL_LONG_MSG(note, expected, actual) \
+do { \
+  if((long)(expected) != (long)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %ld != %ld", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message((char *) op_error_message); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
   } \
 } while ( 0 )
 
@@ -142,6 +243,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_LONG_MSG(note, expected, actual) \
+do { \
+  if((long)(expected) == (long)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %ld == %ld", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message((char *) op_error_message); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_EQUAL_ULONG(expected, actual) \
 do { \
   if((unsigned long)(expected) != (unsigned long)(actual)) {						\
@@ -150,6 +262,17 @@ do { \
     opmock_test_error++; \
     opmock_print_error_messages();						\
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_ASSERT_EQUAL_ULONG_MSG(note, expected, actual) \
+do { \
+  if((unsigned long)(expected) != (unsigned long)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %lu != %lu", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message((char *) op_error_message); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
   } \
 } while ( 0 )
 
@@ -164,6 +287,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_ULONG_MSG(note, expected, actual) \
+do { \
+  if((unsigned long)(expected) == (unsigned long)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %lu == %lu", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note); \
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_EQUAL_FLOAT(expected, actual) \
 do { \
   if((expected) != (actual)) {						\
@@ -172,6 +306,17 @@ do { \
     opmock_test_error++;                                                \
     opmock_print_error_messages();                                      \
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_ASSERT_EQUAL_FLOAT_MSG(note, expected, actual) \
+do { \
+  if((expected) != (actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %f != %f", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *)  note);                \
+    opmock_test_error++;                                                \
+    opmock_print_error_messages();                                      \
+    return;               \
   } \
 } while ( 0 )
 
@@ -186,6 +331,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_FLOAT_MSG(note, expected, actual) \
+do { \
+  if((expected) == (actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %f == %f", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);                \
+    opmock_test_error++;                                                \
+    opmock_print_error_messages();                                      \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_EQUAL_CSTRING(expected, actual) \
 do { \
   if(strcmp((expected), (actual)) != 0) {					\
@@ -194,6 +350,17 @@ do { \
     opmock_test_error++; \
     opmock_print_error_messages();								\
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_ASSERT_EQUAL_CSTRING_MSG(note, expected, actual) \
+do { \
+  if(strcmp((expected), (actual)) != 0) {         \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected '%s' != '%s'", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);                \
+    opmock_test_error++; \
+    opmock_print_error_messages();                \
+    return;               \
   } \
 } while ( 0 )
 
@@ -208,6 +375,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_CSTRING_MSG(note, expected, actual) \
+do { \
+  if(strcmp((expected), (actual)) == 0) {         \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected '%s' == '%s'", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *)  note);                \
+    opmock_test_error++; \
+    opmock_print_error_messages();                \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_TRUE(expected) \
 do { \
   if(!((expected))) {							\
@@ -218,12 +396,12 @@ do { \
     return;								\
   } \
 } while ( 0 )
-/*message ie. note*/
-#define OP_ASSERT_TRUE_MSG(expected, message) \
+
+#define OP_ASSERT_TRUE_MSG(note, expected) \
 do { \
   if(!((expected))) {             \
     snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d", __BASE_FILE__, __LINE__); \
-    opmock_add_error_message_and_note((char *) op_error_message, (char *) message);\
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
     opmock_test_error++; \
     opmock_print_error_messages();                \
     return;               \
@@ -241,6 +419,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_FALSE_MSG(note, expected) \
+do { \
+  if((expected)) {              \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d", __BASE_FILE__, __LINE__); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_EQUAL_CHAR(expected, actual) \
 do { \
   if((char)(expected) != (char)(actual)) {						\
@@ -249,6 +438,17 @@ do { \
     opmock_test_error++; \
     opmock_print_error_messages();						\
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_ASSERT_EQUAL_CHAR_MSG(note, expected, actual) \
+do { \
+  if((char)(expected) != (char)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected '%c' != '%c'", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
   } \
 } while ( 0 )
 
@@ -263,6 +463,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_CHAR_MSG(note, expected, actual) \
+do { \
+  if((char)(expected) == (char)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected '%c' == '%c'", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_EQUAL_UCHAR(expected, actual)	\
 do { \
   if((unsigned char)(expected) != (unsigned char)(actual)) {						\
@@ -271,6 +482,17 @@ do { \
     opmock_test_error++; \
     opmock_print_error_messages();						\
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_ASSERT_EQUAL_UCHAR_MSG(note, expected, actual) \
+do { \
+  if((unsigned char)(expected) != (unsigned char)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected '%cu' != '%cu'", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
   } \
 } while ( 0 )
 
@@ -285,6 +507,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_UCHAR_MSG(note, expected, actual) \
+do { \
+  if((unsigned char)(expected) == (unsigned char)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected '%cu' == '%cu'", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_EQUAL_BYTE(expected, actual) \
 do { \
   if((char)(expected) != (char)(actual)) {						\
@@ -293,6 +526,17 @@ do { \
     opmock_test_error++; \
     opmock_print_error_messages();						\
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_ASSERT_EQUAL_BYTE_MSG(note, expected, actual) \
+do { \
+  if((char)(expected) != (char)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %d != %d", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
   } \
 } while ( 0 )
 
@@ -307,6 +551,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_BYTE_MSG(note, expected, actual) \
+do { \
+  if((char)(expected) == (char)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %d == %d", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_EQUAL_UBYTE(expected, actual) \
 do { \
   if((unsigned char)(expected) != (unsigned char)(actual)) {						\
@@ -315,6 +570,17 @@ do { \
     opmock_test_error++; \
     opmock_print_error_messages();						\
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_ASSERT_EQUAL_UBYTE_MSG(note, expected, actual) \
+do { \
+  if((unsigned char)(expected) != (unsigned char)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %u != %u", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
   } \
 } while ( 0 )
 
@@ -329,6 +595,17 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_UBYTE_MSG(note, expected, actual) \
+do { \
+  if((unsigned char)(expected) == (unsigned char)(actual)) {            \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, expected %u == %u", __BASE_FILE__, __LINE__, (expected), (actual)); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
+
 #define OP_ASSERT_EQUAL_BUFFER(expected, actual, length) \
 do { \
     if(cmp_buffer((char *) (expected), (char *) (actual), (length)) != 0) {						\
@@ -337,6 +614,17 @@ do { \
     opmock_test_error++; \
     opmock_print_error_messages();						\
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_ASSERT_EQUAL_BUFFER_MSG(note, expected, actual, length) \
+do { \
+    if(cmp_buffer((char *) (expected), (char *) (actual), (length)) != 0) {           \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, buffers are not equal", __BASE_FILE__, __LINE__); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
   } \
 } while ( 0 )
 
@@ -351,6 +639,16 @@ do { \
   } \
 } while ( 0 )
 
+#define OP_ASSERT_NOT_EQUAL_BUFFER_MSG(note, expected, actual, length) \
+do { \
+    if(cmp_buffer((char *) (expected), (char *) (actual), (length)) == 0) {           \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : ASSERT failed in file %s at line %d, buffers are equal", __BASE_FILE__, __LINE__); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++; \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
 
 #define OP_VERIFY()						\
 do { \
@@ -361,6 +659,18 @@ do { \
     opmock_test_error++;						\
     opmock_print_error_messages();						\
     return;								\
+  } \
+} while ( 0 )
+
+#define OP_VERIFY_MSG(note)           \
+do { \
+  opmock_test_verify(); \
+  if (opmock_get_number_of_errors() != 0) {         \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : Verify failed in file %s at line %d", __BASE_FILE__, __LINE__); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++;            \
+    opmock_print_error_messages();            \
+    return;               \
   } \
 } while ( 0 )
 	
@@ -376,6 +686,18 @@ do { \
     return;								\
   } \
 } while ( 0 )
+
+#define OP_VERIFY_NO_ORDER_MSG(note)            \
+do { \
+  opmock_test_verify(); \
+  if (opmock_get_number_of_errors_no_order() != 0) {          \
+    snprintf(op_error_message, OP_MESSAGE_LENGTH, "ERROR : Verify failed in file %s at line %d", __BASE_FILE__, __LINE__); \
+    opmock_add_error_message_and_note((char *) op_error_message, (char *) note);\
+    opmock_test_error++;            \
+    opmock_print_error_messages();            \
+    return;               \
+  } \
+} while ( 0 )
 						
 
 
@@ -387,6 +709,7 @@ typedef struct
   OPMOCK_TEST_CALLBACK callback;
   const char *test_name;
   const char *points;
+  const char *note;
 } opmock_test_struct;
 
 /*
