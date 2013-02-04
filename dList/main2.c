@@ -3,8 +3,7 @@
 #include "opmock.h"
 #include "fizzbuzz_test.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
   opmock_test_suite_reset();
   opmock_register_test_points(test_create_elem, "dList creation works","2.5");
   opmock_register_test(test_insert_element, "dList insertation works");

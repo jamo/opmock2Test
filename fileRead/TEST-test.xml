@@ -1,0 +1,14 @@
+<testsuite>
+    <testcase classname="test" name="one char test">
+        <points type="Point">p1</points>
+    </testcase>
+    <testcase classname="test" name="two char test">
+        <points type="Point">p2</points>
+    </testcase>
+    <testcase classname="test" name="one line test">
+        <points type="Point">p3</points>
+    </testcase>
+    <testcase classname="test" name="two line test">
+        <points type="Point">p4</points>
+    </testcase>
+</testsuite>

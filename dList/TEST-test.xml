@@ -1,7 +1,6 @@
 <testsuite>
     <testcase classname="test" name="dList creation works">
-        <points type="Point">2.5
-        </points>
+        <points type="Point">2.5</points>
     </testcase>
     <testcase classname="test" name="dList insertation works">
     </testcase>
@@ -13,7 +12,7 @@
         <failure type="Error">ERROR : ASSERT failed in file fizzbuzz_test.c at line 82
         </failure>
         <note type="Note">testivirheilmo
-        </note>
+</note>
     </testcase>
     <testcase classname="test" name="merge works too">
     </testcase>

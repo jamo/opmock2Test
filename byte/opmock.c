@@ -157,7 +157,7 @@ void opmock_test_suite_run()
         char note [10000];
         opmock_sprint_error_messages_note(note, 10000);
         fprintf(report, "        <note type=\"Note\">%s",note);
-        fprintf(report, "        </note>\n");
+        fprintf(report, "</note>\n");
 			} 
 		}
 		else {
@@ -169,7 +169,7 @@ void opmock_test_suite_run()
 		if(report != NULL) {
       if (opmock_test_array[counter].points != NULL){
         fprintf(report, "        <points type=\"Point\">%s", opmock_test_array[counter].points);
-        fprintf(report, "\n        </points>\n");
+        fprintf(report, "</points>\n");
       }
 			fprintf(report, "    </testcase>\n");
 		}	

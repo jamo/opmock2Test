@@ -1,0 +1,20 @@
+<testsuite>
+    <testcase classname="test" name="one char test">
+        <points type="Point">1</points>
+    </testcase>
+    <testcase classname="test" name="two char test">
+        <points type="Point">2</points>
+    </testcase>
+    <testcase classname="test" name="one line test">
+        <points type="Point">3</points>
+    </testcase>
+    <testcase classname="test" name="two line test">
+        <points type="Point">4</points>
+    </testcase>
+    <testcase classname="test" name="one line test">
+        <points type="Point">5</points>
+    </testcase>
+    <testcase classname="test" name="two line test">
+        <points type="Point">6</points>
+    </testcase>
+</testsuite>
